@@ -9,10 +9,15 @@
 
 <button (click)="isVisible = !isVisible" >change</button>
 
-  <div class="wrapp" *appIfnot="isVisible">
+    <ng-template [appIfnot]="isVisible">
+    <div class="wrapp" >
+      <p>11 ipsum, dolor sit amet consectetur adipisicing elit. Facere amet pariatur hic, natus mollitia veritatis magni adipisci error labore beatae.</p>
+    </div>
+  </ng-template>
+
+  <div class="wrapp"  *ngIf="isVisible">
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere amet pariatur hic, natus mollitia veritatis magni adipisci error labore beatae.</p>
   </div>
-
 
 <app-post-form
 (onAdd)="updatePosts($event)"
@@ -32,4 +37,3 @@
   </div>
 </app-post>
 </div>
- 
