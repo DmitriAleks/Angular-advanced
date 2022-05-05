@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 
 export interface Post {
   title: string
@@ -10,9 +10,11 @@ export interface Post {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  isVisible = true
 
 posts: Post[] = [{
   title: "Best Post",
@@ -22,7 +24,20 @@ posts: Post[] = [{
   title: "no best Post",
   text: 'the no best text the no best',
   id: 2
+},{
+  title: "no best Post",
+  text: 'the no best text the no best',
+  id: 3
 }]
+
+ngOnInit(): void {
+  setTimeout(()=>{
+    console.log('setTimeout');
+    const a =  [...this.posts]
+    console.log(this.posts[0] === a[0]);
+    
+  },3000)
+}
 
 updatePosts(post:Post) {
   this.posts.unshift(post)
