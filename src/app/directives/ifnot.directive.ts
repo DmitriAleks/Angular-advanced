@@ -14,7 +14,7 @@ export class IfnotDirective {
     }
 }
 
-    constructor(private temolateRef: TemplateRef<any>,
-        private viewContainer: ViewContainerRef ) {}
+    constructor(private temolateRef: TemplateRef<any>, // temolateRef внутрений контент ng-template
+        private viewContainer: ViewContainerRef ) {}  // viewContainer указывает на ng-template
 
 }
