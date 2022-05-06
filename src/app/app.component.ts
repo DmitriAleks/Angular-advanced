@@ -1,10 +1,12 @@
  import {  Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Post {
   title: string
   text : string
   id: any
 }
+
 
 
 @Component({
@@ -16,8 +18,35 @@ export class AppComponent implements OnInit {
  e: number = Math.E
   str: string = 'hello wordl'
   isVisible = true
+  float = 0.42
+  date: Date = new Date() 
+  p: Promise<string> = new Promise<string>(resolve => {
+    setTimeout(()=>{
+resolve('Promise Resolved')
+    },4000)
+  })
 
-  date: Date = new Date()
+
+  mDate$: Observable<Date> = new Observable(obs=> {
+    setInterval(()=>{
+obs.next(new Date())
+    },1000)
+  })
+
+  mDate:Date
+
+  search=''
+  searchField:string = 'title'
+
+  obj={
+    a:1,b:{
+      c:2,
+      d:{
+        e:3,
+        f:4
+      }
+    }
+  }
 
 posts: Post[] = [{
   title: "Best Post",
@@ -35,11 +64,11 @@ posts: Post[] = [{
 
 ngOnInit(): void {
   setTimeout(()=>{
-    console.log('setTimeout');
     const a =  [...this.posts]
-    console.log(this.posts[0] === a[0]);
-
   },3000)
+  this.mDate$.subscribe(date=>{
+this.mDate = date
+  })
 }
 
 updatePosts(post:Post) {
@@ -49,6 +78,8 @@ updatePosts(post:Post) {
 deletePost(id:any){
    this.posts = this.posts.filter((post)=>post.id !== id)
 }
+
+
 
 
 }
