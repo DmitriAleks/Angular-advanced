@@ -1,8 +1,11 @@
 <div class="container">
   <h1>Angular</h1>
   <h2>Test</h2>
+<p>{{e | number:'2.2'}}</p>
+  <p>{{str | uppercase | lowercase}}</p>
+<p>{{str | titlecase | slice: 1}}</p>
 
-
+  <p>{{date| date: 'fullDate'}}</p>
 
 <p appStyle="green" fontWeight="bold" [dStyles]="{border: '1px solid blue', borderRadius: '5px'}">
   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus, assumenda.</p>

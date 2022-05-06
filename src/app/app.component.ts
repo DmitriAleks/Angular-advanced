@@ -1,10 +1,10 @@
-import {  Component, OnInit } from '@angular/core';
+ import {  Component, OnInit } from '@angular/core';
 
 export interface Post {
   title: string
   text : string
   id: any
-} 
+}
 
 
 @Component({
@@ -13,8 +13,11 @@ export interface Post {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
+ e: number = Math.E
+  str: string = 'hello wordl'
   isVisible = true
+
+  date: Date = new Date()
 
 posts: Post[] = [{
   title: "Best Post",
@@ -35,13 +38,13 @@ ngOnInit(): void {
     console.log('setTimeout');
     const a =  [...this.posts]
     console.log(this.posts[0] === a[0]);
-    
+
   },3000)
 }
 
 updatePosts(post:Post) {
   this.posts.unshift(post)
-  
+
 }
 deletePost(id:any){
    this.posts = this.posts.filter((post)=>post.id !== id)
