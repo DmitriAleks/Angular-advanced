@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, interval, Subscription , Subject} from 'rxjs';
 import {filter, map, switchMap} from "rxjs/operators";
+import {AppConterService} from "./services/app-conter.service";
+import {LocalCounterService} from "./services/local-counter.service";
 
 
 
@@ -16,18 +18,22 @@ export interface Post {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers:[LocalCounterService]
 })
 export class AppComponent implements OnInit {
   sub: Subscription
   stream2$: Subject<number> = new Subject<number>()
   counter = 0
-  constructor() {
-  this.sub = this.stream2$.subscribe(value=>{
-    console.log('subscribe', value)
-  })
+  constructor(
+              public appConterService: AppConterService,
+              public localCounterService:LocalCounterService,
+              ) {
 
 
 
+  // this.sub = this.stream2$.subscribe(value=>{
+  //   console.log('subscribe', value)
+  // })
     // const stream$ = new Observable(observer => {
     //   setTimeout(() => {
     //     observer.next(1)
