@@ -3,6 +3,7 @@ import {Observable, interval, Subscription , Subject} from 'rxjs';
 import {filter, map, switchMap} from "rxjs/operators";
 import {AppConterService} from "./services/app-conter.service";
 import {LocalCounterService} from "./services/local-counter.service";
+import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 
 
 
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   sub: Subscription
   stream2$: Subject<number> = new Subject<number>()
   counter = 0
+  form: FormGroup
   constructor(
               public appConterService: AppConterService,
               public localCounterService:LocalCounterService,
@@ -112,13 +114,24 @@ export class AppComponent implements OnInit {
     id: 3
   }]
 
-  ngOnInit(): void {
+  ngOnInit(){
     // setTimeout(()=>{
     //   const a =  [...this.posts]
     // },3000)
-    this.mDate$.subscribe(date => {
-      this.mDate = date
+    // this.mDate$.subscribe(date => {
+    //   this.mDate = date
+    // })
+    this.form = new FormGroup({
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl(null, [Validators.minLength(6), Validators.required, Validators.maxLength(8)])
     })
+  }
+
+  submit(){
+    if(this.form.valid){
+      const formData = {...this.form.value}
+      console.log(formData)
+    }
   }
 
   updatePosts(post: Post) {
