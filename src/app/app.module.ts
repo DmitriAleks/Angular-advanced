@@ -13,6 +13,7 @@ import { ExMarksPipe } from './pipes/ex-marks.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import {AppConterService} from "./services/app-conter.service";
 import { CounterComponent } from './counter/counter.component';
+import { SwitchComponent } from './switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CounterComponent } from './counter/counter.component';
     ExMarksPipe,
     FilterPipe,
     CounterComponent,
+    SwitchComponent,
   ],
   imports: [
     BrowserModule,
